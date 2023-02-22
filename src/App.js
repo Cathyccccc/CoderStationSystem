@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { Layout } from 'antd';
+import NavHeader from './components/NavHeader';
+import PageFooter from './components/PageFooter';
+import Router from './router/Router';
+import LoginModal from './components/LoginModal';
+
+const { Header, Footer, Content } = Layout;
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout>
+        <Header className='header'>
+          <NavHeader handleLogin={() => setIsModalOpen(true)} />
+        </Header>
+        <Content className='content'>
+          <Router />
+        </Content>
+        <Footer className='footer'>
+          <PageFooter />
+        </Footer>
+      </Layout>
+      <LoginModal isModalOpen={isModalOpen} handleCancel={() => setIsModalOpen(false)} />
     </div>
   );
 }
