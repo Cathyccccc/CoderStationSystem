@@ -5,13 +5,18 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('userToken')
+  if (token) {
+    config.headers['Authorization'] = 'Bearer ' + token;
+  }
   return config;
 }, (error) => {
   return Promise.reject(error);
 });
 
 instance.interceptors.response.use((response) => {
-  console.log(response)
+  
+  return response.data;
 }, (error) => {
   return Promise.reject(error);
 });

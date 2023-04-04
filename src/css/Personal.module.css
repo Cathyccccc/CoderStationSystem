@@ -1,0 +1,13 @@
+.container{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.row{
+  margin-bottom: 30px;
+}
+
+.intro{
+  font-weight: 300;
+}
+

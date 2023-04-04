@@ -1,16 +1,36 @@
 import './App.css';
-import { useState } from 'react';
-import { Layout } from 'antd';
+import { useState, useEffect } from 'react';
+import { Layout, message } from 'antd';
 import NavHeader from './components/NavHeader';
 import PageFooter from './components/PageFooter';
-import Router from './router/Router';
+import BeforeRoute from './router/BeforeRoute';
 import LoginModal from './components/LoginModal';
+import { whoamiApi, getUserByIdAPi } from './api/user';
+import { setUserInfo } from './redux/userSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 
 const { Header, Footer, Content } = Layout;
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem('userToken')) { // 用户已经登录，刷新页面时仓库的用户信息会被清除，无法显示用户头像
+      async function fetchUser() {
+        const { data, msg } = await whoamiApi();
+        if (data) {
+          const res = await getUserByIdAPi(data._id);
+          dispatch(setUserInfo(res.data));
+        } else {
+          message.error(msg);
+          navigate('/');
+        }
+      }
+      fetchUser();
+    }
+  }, []);
   return (
     <div className="App">
       <Layout>
@@ -18,7 +38,7 @@ function App() {
           <NavHeader handleLogin={() => setIsModalOpen(true)} />
         </Header>
         <Content className='content'>
-          <Router />
+          <BeforeRoute />
         </Content>
         <Footer className='footer'>
           <PageFooter />

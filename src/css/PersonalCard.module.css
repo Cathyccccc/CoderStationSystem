@@ -1,0 +1,17 @@
+.edit{
+  color: #4091f7;
+  cursor: pointer;
+}
+
+.infoContainer{
+  display: flex;
+  justify-content:space-between;
+  /* align-items:center; */
+  height: 45px;
+  line-height: 45px;
+}
+
+.left{
+  display: flex;
+  font-weight: 300;
+}

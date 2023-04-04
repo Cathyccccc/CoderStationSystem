@@ -1,14 +1,17 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
-console.log('agarhsrfhbsfdb123123')
+const {createProxyMiddleware} = require("http-proxy-middleware");
 module.exports = function(app){
-    app.use(createProxyMiddleware("/res", {
+    app.use(
+      createProxyMiddleware("/res", {
         target: "http://127.0.0.1:7001",
         changeOrigin : true,
-    }),createProxyMiddleware("/api", {
+      }),
+      createProxyMiddleware("/api", {
         target: "http://127.0.0.1:7001",
-        changeOrigin : true
-    }),createProxyMiddleware("/static", {
+        changeOrigin : true,
+      }),
+      createProxyMiddleware("/static", {
         target: "http://127.0.0.1:7001",
-        changeOrigin : true
-    }))
+        changeOrigin : true,
+      })
+    )
 }

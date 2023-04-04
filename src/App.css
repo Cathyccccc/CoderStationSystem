@@ -1,4 +1,29 @@
 @import '~antd/dist/antd.css';
+
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('./fonts/iconfont.ttf?t=1677815495439') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiangbei:before {
+  content: "\e968";
+}
+
+.App {
+  min-height: 100vh;
+}
+.ant-layout {
+  min-height: 100vh;
+}
+
 .header {
   width: 100%;
   position: fixed;
@@ -69,8 +94,14 @@
 .content {
   width: 1200px;
   /* height: 5000px; */
-  background-color: #fff;
+  /* background-color: #fff; */
   margin: 85px auto 0 auto;
+}
+
+/* 取消content的背景色，添加到wrapper上 */
+.wrapper {
+  background-color: #fff;
+  padding-bottom: 20px;
 }
 
 .footer {

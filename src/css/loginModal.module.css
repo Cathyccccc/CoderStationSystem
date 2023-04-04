@@ -29,3 +29,10 @@
   width: 50%;
   text-align: center;
 }
+.svgWrapper {
+  float: right;
+}
+.svgWrapper svg {
+  width: 130px;
+  transform: translateY(-10px);
+}
